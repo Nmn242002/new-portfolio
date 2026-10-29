@@ -43,11 +43,17 @@ export function About() {
         <Polaroid bounds={area} />
       </div>
 
-      <div className="mt-24 grid gap-8 md:grid-cols-[220px_minmax(0,1fr)]">
-        <FadeIn>
-          <Label>Experience</Label>
+      <div id="experience" className="mt-24 scroll-mt-28">
+        <FadeIn className="flex flex-wrap items-end justify-between gap-4">
+          {/* Same red light as the Skills heading below. */}
+          <h3 className="font-display text-[clamp(3.5rem,9vw,9rem)] leading-[0.8] text-red [text-shadow:0_0_60px_rgb(208_20_44/0.55)]">
+            Experience
+          </h3>
+          <p className="micro text-mute-dark">
+            {String(experience.length).padStart(2, "0")} roles
+          </p>
         </FadeIn>
-        <FadeIn delay={0.1} className="space-y-4">
+        <FadeIn delay={0.1} className="mt-10 space-y-4">
           {experience.map((job) => (
             <article
               key={job.role}
