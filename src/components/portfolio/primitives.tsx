@@ -1,19 +1,37 @@
 import { useMotionValueEvent, useScroll } from "framer-motion";
-import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useRef, type CSSProperties, type ReactNode, type RefObject } from "react";
 
 import { cn } from "@/lib/utils";
 
 const EASE_CSS = "cubic-bezier(0.25, 0.1, 0.25, 1)";
 
+/**
+ * Marks the element `data-offscreen` while it is out of view, which pauses its looping
+ * CSS decoration (see styles.css) so it stops costing frames elsewhere on the page.
+ */
+export function usePauseOffscreen(ref: RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry?.isIntersecting) delete el.dataset["offscreen"];
+      else el.dataset["offscreen"] = "";
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [ref]);
+}
+
 // Reveals once on entering the viewport with a CSS transition, which the browser runs
 // off the main thread. The reveal writes styles directly, so it never re-renders React.
+// It starts a little before the block scrolls into view, so nobody waits on it.
 export function FadeIn({
   children,
   className,
   delay = 0,
-  duration = 0.7,
+  duration = 0.35,
   x = 0,
-  y = 30,
+  y = 16,
 }: {
   children: ReactNode;
   className?: string;
@@ -35,13 +53,13 @@ export function FadeIn({
           observer.disconnect();
         }
       },
-      { rootMargin: "50px" },
+      { rootMargin: "0px 0px 20% 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
-  const timing = `${duration}s ${EASE_CSS} ${delay}s`;
+  const timing = `${duration}s ${EASE_CSS} ${Math.min(delay, 0.1)}s`;
   return (
     <div
       ref={ref}

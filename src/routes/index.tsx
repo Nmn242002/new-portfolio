@@ -5,10 +5,8 @@ import { About } from "@/components/portfolio/cine/About";
 import { Finale } from "@/components/portfolio/cine/Finale";
 import { Record } from "@/components/portfolio/cine/Record";
 import { SiteHeader } from "@/components/portfolio/cine/SiteHeader";
-import { StatsBand } from "@/components/portfolio/cine/StatsBand";
 import { Projects } from "@/components/portfolio/cine/Projects";
 import { FilmCursor } from "@/components/portfolio/film";
-import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
 const title = "Naman Jain | AI Filmmaker";
 const description =
@@ -29,14 +27,12 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  useSmoothScroll();
   return (
     <>
       <SiteHeader />
       <FilmCursor />
       <main className="min-h-screen bg-night" style={{ overflowX: "clip" }}>
         <CineHero />
-        <StatsBand />
         <Record />
         <About />
         <Projects />

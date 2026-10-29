@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Mail, UserRound, X } from "lucide-react";
+import { Linkedin, UserRound, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
@@ -22,37 +22,53 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
+  // Thin observer bands do the hit-testing off the main thread: one under the header for
+  // its ink, one at 40% of the viewport for the active nav link. Measuring every section
+  // on each scroll frame forced a layout per frame and made scrolling stutter.
   useEffect(() => {
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const probe = 36;
-      // Last match wins: a nested section (the pinned dark band) overrides its parent.
-      const under = [...document.querySelectorAll<HTMLElement>("[data-header]")]
-        .reverse()
-        .find((el) => {
-          const r = el.getBoundingClientRect();
-          return r.top <= probe && r.bottom > probe;
-        });
-      setTone(under?.dataset["header"] === "light" ? "light" : "dark");
-      setScrolled(window.scrollY > 40);
-      const mid = window.innerHeight * 0.4;
-      const current = sections.find(({ id }) => {
-        const r = document.getElementById(id)?.getBoundingClientRect();
-        return r && r.top <= mid && r.bottom > mid;
-      });
-      setActive(current?.id ?? "");
+    const probe = 36;
+    const tones = [...document.querySelectorAll<HTMLElement>("[data-header]")];
+    const targets = sections
+      .map(({ id }) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    const under = new Set<Element>();
+    const inMid = new Set<Element>();
+    let observers: IntersectionObserver[] = [];
+
+    const watch = () => {
+      observers.forEach((o) => o.disconnect());
+      under.clear();
+      inMid.clear();
+      const toneIO = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) e.isIntersecting ? under.add(e.target) : under.delete(e.target);
+          // Last match wins: a nested section (the pinned dark band) overrides its parent.
+          const top = tones.filter((el) => under.has(el)).at(-1);
+          setTone(top?.dataset["header"] === "light" ? "light" : "dark");
+        },
+        { rootMargin: `-${probe}px 0px -${Math.max(0, window.innerHeight - probe - 1)}px 0px` },
+      );
+      const midIO = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) e.isIntersecting ? inMid.add(e.target) : inMid.delete(e.target);
+          setActive(targets.find((el) => inMid.has(el))?.id ?? "");
+        },
+        { rootMargin: "-40% 0px -59% 0px" },
+      );
+      tones.forEach((el) => toneIO.observe(el));
+      targets.forEach((el) => midIO.observe(el));
+      observers = [toneIO, midIO];
     };
-    const schedule = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
+
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    watch();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", watch);
     return () => {
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-      cancelAnimationFrame(frame);
+      observers.forEach((o) => o.disconnect());
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", watch);
     };
   }, []);
 
@@ -64,7 +80,7 @@ export function SiteHeader() {
   }, [open]);
 
   const light = tone === "light" && !open;
-  const email = contactLinks.find((l) => l.label === "Email")?.href ?? "#contact";
+  const linkedin = contactLinks.find((l) => l.label === "LinkedIn")?.href ?? "#contact";
 
   return (
     <>
@@ -108,11 +124,13 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-1.5">
           <a
-            href={email}
-            aria-label="Email Naman"
+            href={linkedin}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Naman on LinkedIn"
             className="hidden size-8 items-center justify-center rounded-full border border-current transition-opacity hover:opacity-60 sm:flex"
           >
-            <Mail aria-hidden className="size-3.5" />
+            <Linkedin aria-hidden className="size-3.5" />
           </a>
           <a
             href="#about"
@@ -151,7 +169,7 @@ export function SiteHeader() {
             initial={{ clipPath: "circle(0% at calc(100% - 3rem) 2.75rem)" }}
             animate={{ clipPath: "circle(150% at calc(100% - 3rem) 2.75rem)" }}
             exit={{ clipPath: "circle(0% at calc(100% - 3rem) 2.75rem)" }}
-            transition={{ duration: 0.6, ease: EASE }}
+            transition={{ duration: 0.35, ease: EASE }}
             className="guides fixed inset-0 z-40 flex flex-col justify-between bg-night px-[clamp(1rem,3.2vw,3rem)] pb-8 pt-28 text-white [--guide:var(--line-dark)]"
           >
             <nav aria-label="Menu">

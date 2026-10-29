@@ -62,7 +62,7 @@ export function Record() {
       aria-label="Directed by Naman Jain"
       // The shadow fills the corners under the stats band's rounded bottom without
       // pulling this section up underneath it.
-      className="relative z-[3] h-[900vh] rounded-b-[1.75rem] border-b-[3px] border-red bg-night text-white shadow-[0_-1.75rem_0_var(--night)] [overflow:clip]"
+      className="relative z-[3] h-[450vh] rounded-b-[1.75rem] border-b-[3px] border-red bg-night text-white shadow-[0_-1.75rem_0_var(--night)] [overflow:clip]"
     >
       <h2 className="sr-only">Directed by Naman Jain</h2>
       <ol className="sr-only">
@@ -98,17 +98,25 @@ function layout({ w, h }: Stage) {
   const gutter = Math.min(48, Math.max(16, w * 0.032));
   const column = 300; // caption column right of the disc on wide screens
 
+  // On wide screens the disc and the parked arm stay clear of the fixed header and the
+  // "Side A" row above, and of the scroll hint below.
+  const top = 120;
+  const bottom = 60;
   const r = wide
-    ? Math.min(h * 0.4, (w - gutter * 2 - column - 180) / 2.12)
+    ? Math.min((h - top - bottom) / 2.12, (w - gutter * 2 - column - 180) / 2.12)
     : Math.min(w * 0.4, h * 0.27);
   const rim = r * 1.06;
   const cx = wide ? Math.min(w / 2, w - gutter - column - 40 - rim) : w / 2;
-  const cy = wide ? h * 0.53 : h * 0.56;
+  const cy = wide ? top + (h - top - bottom) / 2 : h * 0.56;
 
   // Pivot parked in the bottom-left corner: pointing up on wide screens, along the
   // bottom edge on phones where the disc fills the width.
-  const px = wide ? Math.max(gutter + 40, w * 0.06) : w * 0.08;
   const py = h - (wide ? 70 : 28);
+  // The arm reaches 0.3r past the disc centre and parks straight up, so on short screens
+  // the pivot moves in toward the disc until the parked headshell clears the header.
+  const reach = py - top + r * 0.3;
+  const fit = cx - Math.sqrt(Math.max(0, reach * reach - (py - cy) ** 2));
+  const px = wide ? Math.max(gutter + 40, w * 0.06, fit) : w * 0.08;
   const parked = wide ? -92 : 4;
 
   // A real arm has one length; the stylus traces an arc, so each ring has its own angle.
@@ -137,7 +145,7 @@ function Turntable({ stage, progress }: { stage: Stage; progress: MotionValue<nu
   const s = r / 500;
 
   const raw = useTransform(progress, SPIN_IN, SPIN_OUT);
-  const angle = useSpring(raw, { stiffness: 60, damping: 20 });
+  const angle = useSpring(raw, { stiffness: 180, damping: 30 });
 
   const armAngle = useTransform(
     progress,
@@ -428,7 +436,7 @@ function PressedRing({
       <text ref={textRef} fill={tone} fontSize={size} dy={size * 0.36}>
         <textPath href={`#${id}-p`} textLength={length * 0.995} lengthAdjust="spacing">
           {[...line].map((ch, k) => (
-            <tspan key={k} style={{ fillOpacity: 0, transition: "fill-opacity 0.45s ease-out" }}>
+            <tspan key={k} style={{ fillOpacity: 0, transition: "fill-opacity 0.2s ease-out" }}>
               {ch}
             </tspan>
           ))}

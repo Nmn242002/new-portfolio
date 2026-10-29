@@ -181,6 +181,14 @@ export const about = {
   place: "Delhi",
 } as const;
 
+/** Full-length cut-out in a director's chair, for the closing scene. */
+export const directorsChair = {
+  src: "/naman-directors-chair.webp",
+  alt: "Naman Jain sitting cross-legged in a wooden director's chair",
+  width: 833,
+  height: 1354,
+};
+
 export const heroPortrait = {
   src: "/naman-portrait.webp",
   alt: "Portrait of Naman Jain",
@@ -215,6 +223,17 @@ export const experience = [
       "AI-Assisted Post-Production",
       "Thumbnail & Visual Asset Creation",
     ],
+  },
+  {
+    role: "Freelance AI Video Creator",
+    company: "AdInspire · Independent clients",
+    location: "Freelance",
+    period: "Nov 2025 – Apr 2026",
+    points: [
+      "Made short-form AI videos for AdInspire to post on Instagram, from concept and AI generation to the final edit.",
+      "Took on AI video and image work for other clients alongside AdInspire, delivering ready-to-post content.",
+    ],
+    tags: ["AI Video Generation", "AI Image Generation", "Short-form Video", "Instagram Content", "Video Editing"],
   },
 ];
 
@@ -378,6 +397,11 @@ export const projects: Project[] = [
 export const contactLinks = [
   { label: "Email", value: "filmmakernaman@gmail.com", href: "mailto:filmmakernaman@gmail.com" },
   { label: "WhatsApp", value: "+91 92113 77027", href: "https://wa.me/919211377027" },
+  {
+    label: "LinkedIn",
+    value: "in/naman-jain-profile-for-filmmaking",
+    href: "https://www.linkedin.com/in/naman-jain-profile-for-filmmaking",
+  },
   { label: "Location", value: "Delhi, India", href: "" },
 ];
 
@@ -397,18 +421,16 @@ export const cine = {
   year: "2026",
   story: {
     label: "Naman Jain · Story",
-    lead: "Part A",
-    text: "An AI filmmaker in Delhi who writes, designs, generates, voices and cuts every shot himself.",
+    text: "AI filmmaker and editor crafting cinematic sci-fi end to end, from script and character design to AI shots with Seedance, Veo, Kling and Midjourney, ElevenLabs dialogue and a Premiere Pro cut.",
   },
-  production: { label: "Production", studio: "PhysicsWallah" },
-  rating: 4,
-  stats: [
-    { label: "Scenes", value: "Hand Built" },
-    { label: "Episodes", value: "Series Ready" },
-    { label: "Frame", value: "Cinema Wide" },
-  ],
-  quote: "I write the script, design the characters, generate the shots and cut the edit myself.",
-  finale: { label: "Available for projects", title: "Naman Jain", place: "Delhi", year: "2026" },
+  finale: {
+    label: "Available for projects",
+    hello: "Hi, I’m",
+    name: "Naman.",
+    roles: ["AI Filmmaker", "Writer", "Director", "Editor"],
+    text: "I turn ideas into cinematic stories with AI, from script and characters to the final cut. Let’s make something worth watching.",
+    place: "Delhi",
+  },
   // Side A of the record: each track is pressed into the disc as a ring of text and
   // captioned beside it while it plays.
   record: [

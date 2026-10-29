@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { AudioLines, Mic, PenLine, Scissors } from "lucide-react";
 import { Fragment, useEffect, useRef, useState, type CSSProperties, type RefObject } from "react";
 
-import { FadeIn } from "../primitives";
+import { FadeIn, usePauseOffscreen } from "../primitives";
 import { about, cine, experience, projects, skills } from "../data";
 import { Avatar, Label, Sticker } from "./bits";
 
@@ -14,9 +14,12 @@ const stills = (projects[0]!.scenes ?? []).map((s) => s.poster);
 // rounded, red-edged bottom hands over to the white projects band.
 export function About() {
   const area = useRef<HTMLDivElement>(null);
+  const section = useRef<HTMLElement>(null);
+  usePauseOffscreen(section);
 
   return (
     <section
+      ref={section}
       id="about"
       data-header="dark"
       aria-label="About me"
@@ -140,7 +143,7 @@ function Intro() {
           io.disconnect();
         }
       },
-      { rootMargin: "0px 0px -15% 0px" },
+      { rootMargin: "0px 0px 10% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();

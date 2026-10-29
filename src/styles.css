@@ -1,7 +1,6 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import "locomotive-scroll/dist/locomotive-scroll.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -22,6 +21,7 @@
   --font-sans: "Inter", system-ui, sans-serif;
   --font-reel: "Bebas Neue", "Arial Narrow", system-ui, sans-serif;
   --font-micro: "Inter", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
   --color-night: var(--night);
   --color-night-2: var(--night-2);
   --color-paper: var(--paper);
@@ -160,7 +160,6 @@
     inset 0 1px 0 #3a3a3e,
     inset 0 -1px 0 #3a3a3e,
     0 0 0 1px #000;
-  animation: film-flicker 3.2s steps(1, end) infinite;
 }
 .film-frame {
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2756%27%20height%3D%2744%27%20viewBox%3D%270%200%2056%2044%27%3E%3Crect%20x%3D%273%27%20y%3D%273%27%20width%3D%278%27%20height%3D%275%27%20rx%3D%271.2%27%20fill%3D%27%23e9e6df%27%20fill-opacity%3D%27.82%27%2F%3E%3Crect%20x%3D%273%27%20y%3D%2736%27%20width%3D%278%27%20height%3D%275%27%20rx%3D%271.2%27%20fill%3D%27%23e9e6df%27%20fill-opacity%3D%27.82%27%2F%3E%3Crect%20x%3D%2717%27%20y%3D%273%27%20width%3D%278%27%20height%3D%275%27%20rx%3D%271.2%27%20fill%3D%27%23e9e6df%27%20fill-opacity%3D%27.82%27%2F%3E%3Crect%20x%3D%2717%27%20y%3D%2736%27%20width%3D%278%27%20height%3D%275%27%20rx%3D%271.2%27%20fill%3D%27%23e9e6df%27%20fill-opacity%3D%27.82%27%2F%3E%3Crect%20x%3D%2731%27%20y%3D%273%27%20width%3D%278%27%20height%3D%275%27%20rx%3D%271.2%27%20fill%3D%27%23e9e6df%27%20fill-opacity%3D%27.82%27%2F%3E%3Crect%20x%3D%2731%27%20y%3D%2736%27%20width%3D%278%27%20height%3D%275%27%20rx%3D%271.2%27%20fill%3D%27%23e9e6df%27%20fill-opacity%3D%27.82%27%2F%3E%3Crect%20x%3D%2745%27%20y%3D%273%27%20width%3D%278%27%20height%3D%275%27%20rx%3D%271.2%27%20fill%3D%27%23e9e6df%27%20fill-opacity%3D%27.82%27%2F%3E%3Crect%20x%3D%2745%27%20y%3D%2736%27%20width%3D%278%27%20height%3D%275%27%20rx%3D%271.2%27%20fill%3D%27%23e9e6df%27%20fill-opacity%3D%27.82%27%2F%3E%3Cpath%20d%3D%27M0.3%2010V34%27%20stroke%3D%27%23000%27%20stroke-width%3D%27.6%27%2F%3E%3C%2Fsvg%3E");
@@ -174,27 +173,10 @@
     transform: translateX(-20%);
   }
 }
+/* Its own GPU layer, so the 60 filtered frames are drawn once and only slide. */
 .film-roll {
   animation: film-roll 16s linear infinite;
-}
-/* The faint brightness jitter of a projected print. */
-@keyframes film-flicker {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  31% {
-    opacity: 0.93;
-  }
-  33% {
-    opacity: 1;
-  }
-  72% {
-    opacity: 0.96;
-  }
-  74% {
-    opacity: 1;
-  }
+  will-change: transform;
 }
 
 @keyframes spin-slow {
@@ -204,6 +186,13 @@
 }
 .spin-slow {
   animation: spin-slow 14s linear infinite;
+  will-change: transform;
+}
+/* Looping decoration stops once its section is off screen ([data-offscreen], set from
+   script), so it costs nothing while the rest of the page scrolls. */
+[data-offscreen] .film-roll,
+[data-offscreen] .spin-slow {
+  animation-play-state: paused;
 }
 
 /* About intro: words and chips rise in one by one once the paragraph is in view
@@ -214,9 +203,9 @@
   opacity: 0;
   transform: translateY(0.45em) rotate(3deg);
   transition:
-    opacity 0.6s ease-out,
-    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-  transition-delay: calc(var(--i, 0) * 35ms);
+    opacity 0.3s ease-out,
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(var(--i, 0) * 8ms);
 }
 p.intro-word {
   display: block;
@@ -225,12 +214,12 @@ p.intro-word {
   opacity: 0;
   transform: scale(0.2) rotate(-25deg);
   transition:
-    opacity 0.4s ease-out,
-    transform 0.7s cubic-bezier(0.3, 1.6, 0.5, 1),
+    opacity 0.25s ease-out,
+    transform 0.4s cubic-bezier(0.3, 1.6, 0.5, 1),
     rotate 0.3s ease-out,
     scale 0.3s ease-out,
     background-color 0.3s ease-out;
-  transition-delay: calc(var(--i, 0) * 35ms), calc(var(--i, 0) * 35ms), 0s, 0s, 0s;
+  transition-delay: calc(var(--i, 0) * 8ms), calc(var(--i, 0) * 8ms), 0s, 0s, 0s;
 }
 .intro[data-shown] .intro-word,
 .intro[data-shown] .intro-chip {
@@ -246,18 +235,21 @@ p.intro-word {
   }
 }
 
-/* Bouncing equalizer bars (the mic chip in the About intro). */
+/* Bouncing equalizer bars (the mic chip in the About intro). Scaled, not resized:
+   animating height re-laid out the whole page every frame, even off screen. */
 @keyframes eq-bar {
   0%,
   100% {
-    height: 30%;
+    transform: scaleY(0.3);
   }
   50% {
-    height: 100%;
+    transform: none;
   }
 }
 .eq-bar {
-  height: 30%;
+  height: 100%;
+  transform: scaleY(0.3);
+  transform-origin: bottom;
   animation: eq-bar 0.9s ease-in-out infinite;
 }
 
@@ -407,6 +399,11 @@ p.intro-word {
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* Nav links glide to their section; wheel and touch scrolling stay native and instant. */
+  html {
+    scroll-behavior: smooth;
   }
 
   ::selection {

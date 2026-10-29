@@ -3,7 +3,7 @@ name: Cine Daily (derived from the user's reference landing-page video)
 scope: Whole site. The stacked showreel and /work/$slug pages keep the film-card layout from the
   earlier Siena reference, recoloured into this palette.
 colors:
-  night: "#0B0B0C" # hero and stats band, dark cards
+  night: "#0B0B0C" # hero, dark cards
   night-2: "#18181A" # dark stat circle, raised dark surfaces
   paper: "#FFFFFF" # white sections
   paper-2: "#F4F3F1" # soft fills on white, cream tickets
@@ -54,11 +54,15 @@ frame is one project still with four pale sprocket holes above and below it, as 
 - **Header**: logo PORTFOLIO (its first O a red camera aperture) left, tracked nav with dot separators centre, a small red dot
   under the active item, two outlined icon circles and a filled hamburger circle on the right.
 - **Hero**: genre chips (outlined pills) top-left, release label top-right, four credit names
-  across, giant title, vertical "[2026]" on the right edge, film strip, story blurb bottom-left,
+  across, giant title with a red stacked "Film / Maker" at the far right, film strip, story blurb
+  bottom-left, and an
   outlined "CONTACT ↗" pill and a spinning sticker badge bottom-right.
-- **Stat circles**: three 6rem circles: white, red, night-2. Micro label over a display value.
-- **Quote**: red vertical rule, display-face quote, red arrow.
 - **Motion**: Locomotive Scroll (v5, native-scroll smoothing) on every page.
 - **Ticket card**: night card, red tab on top, "FILM" label, title, image tile, 2×2 fact cells,
   full-width red CTA.
-- **Finale**: "IN THEATERS" label, title, place left / year right, cut-out rising from the bottom.
+- **Finale**: pinned scroll scene: a camera back rises with its screen black; a light flickers on
+  to show a stage with an empty director's chair, the exposure dial turns -3 to 0 EV, the screen
+  zooms in on the chair, then the shutter fires: in the flash the camera is gone. Revealed, in two
+  columns that never overlap: me in the chair in a warm glow (left) and a right-aligned card:
+  availability pill, serif "Hi, I'm *Naman.*" (name red italic), roles, line, red "Let's Talk" plus
+  outlined Email and LinkedIn buttons. Phones stack the card above the photo.
