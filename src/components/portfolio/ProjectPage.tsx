@@ -337,6 +337,8 @@ function Footer() {
           {email && (
             <a
               href={email.href}
+              target="_blank"
+              rel="noreferrer"
               className="reel-title mt-3 block break-all text-[clamp(1.5rem,3vw,2.5rem)] hover:underline"
             >
               {email.value}

@@ -155,7 +155,7 @@ function Scene({ card, cardY }: { card: MotionValue<number>; cardY: MotionValue<
             </CardLink>
           )}
           {email && (
-            <CardLink href={email.href}>
+            <CardLink href={email.href} external>
               <Mail aria-hidden className="size-4" /> Email
             </CardLink>
           )}

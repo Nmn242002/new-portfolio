@@ -395,8 +395,8 @@ export const projects: Project[] = [
 ];
 
 export const contactLinks = [
-  { label: "Email", value: "filmmakernaman@gmail.com", href: "mailto:filmmakernaman@gmail.com" },
-  { label: "WhatsApp", value: "+91 92113 77027", href: "https://wa.me/919211377027" },
+  { label: "Email", value: "filmmakernaman@gmail.com", href: "https://mail.google.com/mail/?view=cm&fs=1&to=filmmakernaman@gmail.com" },
+  { label: "WhatsApp", value: "+91 99109 26456", href: "https://wa.me/919910926456" },
   {
     label: "LinkedIn",
     value: "in/naman-jain-profile-for-filmmaking",
