@@ -176,7 +176,7 @@ export const about = {
   intro:
     "I’m Naman Jain, an AI filmmaker. I write the script, design the characters, generate the shots, record the dialogue, build the sound and cut the edit myself.",
   focus:
-    "At PhysicsWallah I’m making Project Earth, an original sci-fi series for their OTT app. I design its characters and worlds, write its Hindi and Hinglish dialogue, and edit Episodes 2–5 in a 2.39:1 frame.",
+    "At PhysicsWallah I’m making Project Earth, an original sci-fi series for their OTT app. I design its characters and worlds, write its Hindi and Hinglish dialogue, and edit it in a 2.39:1 frame.",
   now: "Making Project Earth at PhysicsWallah",
   place: "Delhi",
 } as const;
@@ -208,7 +208,7 @@ export const experience = [
     location: "Noida",
     period: "May 2026 – Present",
     points: [
-      "Building the AI production workflow for an original multi-episode sci-fi OTT series (Solivus / Project Earth), from scripts and character design to scene prompts, dialogue, sound and edit for Episodes 2–5.",
+      "Building the AI production workflow for an original multi-episode sci-fi OTT series (Solivus / Project Earth), from scripts and character design to scene prompts, dialogue, sound and edit.",
       "Set up character and location reference sheets, a locked-camera, hard-cut look at 2.39:1 and continuity rules used across every episode.",
       "Handle all audio: ElevenLabs dialogue in Roman and Devanagari scripts, Voice Changer for natural delivery, foley, SFX and licensed music.",
     ],
@@ -245,7 +245,6 @@ export type Project = {
   href?: string;
   /** `video` is the muted card preview, `full` the complete scene played in-page, `href` its Drive original. */
   scenes?: {
-    label: string;
     title: string;
     video: string;
     poster: string;
@@ -289,7 +288,7 @@ export const projects: Project[] = [
       { label: "Script & Dialogue", value: "Naman Jain" },
       { label: "Characters & Worlds", value: "Naman Jain" },
       { label: "Sound", value: "Naman Jain" },
-      { label: "Editor · Eps 2–5", value: "Naman Jain" },
+      { label: "Editor", value: "Naman Jain" },
       { label: "Client", value: "PhysicsWallah" },
       { label: "Platform", value: "PW OTT App" },
     ],
@@ -301,7 +300,6 @@ export const projects: Project[] = [
     href: "https://drive.google.com/drive/folders/15q7G40GI8OFfCkTVKiDRQSXakhVzP5Yi?usp=sharing",
     scenes: [
       {
-        label: "Ep 4 · Scene 5",
         title: "The Hologram Briefing",
         video: `${earth}/ep4-scene5.mp4`,
         full: `${earth}/ep4-scene5-full.mp4`,
@@ -309,7 +307,6 @@ export const projects: Project[] = [
         href: driveFile("1tNFXbV2MHvnhaPEn6HKo50LxIDhmIij_"),
       },
       {
-        label: "Ep 5 · Scene 2",
         title: "The Throne Room",
         video: `${earth}/ep5-scene2.mp4`,
         full: `${earth}/ep5-scene2-full.mp4`,
@@ -317,7 +314,6 @@ export const projects: Project[] = [
         href: driveFile("17FXT0G9IHUR2q76O97ZQSX8e_XhTCkLa"),
       },
       {
-        label: "Ep 5 · Scene 4",
         title: "The Council",
         video: `${earth}/ep5-scene4.mp4`,
         full: `${earth}/ep5-scene4-full.mp4`,
@@ -325,7 +321,6 @@ export const projects: Project[] = [
         href: driveFile("1MjKzP_7mssSIiytCVmy9SfNT_jtQXIqt"),
       },
       {
-        label: "Ep 5 · Scene 5",
         title: "The Goblet",
         video: `${earth}/ep5-scene5.mp4`,
         full: `${earth}/ep5-scene5-full.mp4`,
@@ -333,7 +328,6 @@ export const projects: Project[] = [
         href: driveFile("1rJO7aY0sNzxhjmqF3UUL6d3Pb52ude2p"),
       },
       {
-        label: "Scene 4",
         title: "The Laboratory",
         video: `${earth}/scene4-lab.mp4`,
         full: `${earth}/scene4-lab-full.mp4`,
@@ -372,14 +366,13 @@ export const projects: Project[] = [
     // All five parts are cuts of one 5-minute video; `start` is the shot change where each begins.
     scenes: (
       [
-        ["Part 1", "Numbers Everywhere", "numbers", 0],
-        ["Part 2", "A Day at the Beach", "beach-trip", 27.8],
-        ["Part 3", "Shell Hunting", "shell-hunt", 81.9],
-        ["Part 4", "The Shell Stall", "shell-stall", 114],
-        ["Part 5", "New Friends", "new-friends", 228.9],
+        ["Numbers Everywhere", "numbers", 0],
+        ["A Day at the Beach", "beach-trip", 27.8],
+        ["Shell Hunting", "shell-hunt", 81.9],
+        ["The Shell Stall", "shell-stall", 114],
+        ["New Friends", "new-friends", 228.9],
       ] as const
-    ).map(([label, title, file, start]) => ({
-      label,
+    ).map(([title, file, start]) => ({
       title,
       video: `${counting}/${file}.mp4`,
       full: `${counting}/full.mp4`,
@@ -449,7 +442,7 @@ export const cine = {
     {
       kicker: "Now showing",
       title: "Project Earth",
-      ring: "Project Earth • PhysicsWallah OTT • Episodes 2–5 • ",
+      ring: "Project Earth • PhysicsWallah OTT • Sci-Fi Series • ",
       text: "An original sci-fi series for the PhysicsWallah OTT app.",
     },
     {

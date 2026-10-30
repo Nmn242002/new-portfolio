@@ -138,7 +138,7 @@ function Trailer({ scene }: { scene: Scene }) {
         <Dialog>
           <DialogTrigger
             data-cursor="Play"
-            aria-label={`Watch ${scene.label}: ${scene.title}`}
+            aria-label={`Watch ${scene.title}`}
             className="group relative block aspect-[16/10] w-full cursor-pointer overflow-hidden rounded-[1.25rem] bg-canvas focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cinema md:aspect-[21/9]"
           >
             <LoopVideo scene={scene} className="size-full object-cover" />
@@ -213,7 +213,7 @@ function SceneGallery({ project }: { project: Project }) {
             <Dialog>
               <DialogTrigger
                 data-cursor="Play"
-                aria-label={`Watch ${scene.label}: ${scene.title}`}
+                aria-label={`Watch ${scene.title}`}
                 className="glitch-host group block w-full cursor-pointer text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cinema"
               >
                 <span className="block overflow-hidden rounded-[6px] bg-black">
@@ -232,7 +232,6 @@ function SceneGallery({ project }: { project: Project }) {
                   >
                     {scene.title}
                   </span>
-                  <span className="micro shrink-0 text-white/60">{scene.label}</span>
                 </span>
               </DialogTrigger>
               <ScenePlayer scene={scene} />

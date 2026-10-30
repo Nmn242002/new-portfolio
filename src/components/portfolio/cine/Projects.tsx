@@ -187,7 +187,7 @@ function SceneTile({
         data-cursor="Play"
         onPointerEnter={(e) => e.pointerType === "mouse" && onHover(true)}
         onPointerLeave={(e) => e.pointerType === "mouse" && onHover(false)}
-        aria-label={`Watch ${scene.label}: ${scene.title}`}
+        aria-label={`Watch ${scene.title}`}
         className={cn(
           "glitch-host group relative block w-full cursor-pointer overflow-hidden rounded-[1.1rem] bg-black text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red",
           className,
@@ -208,11 +208,10 @@ function SceneTile({
           )}
         />
         <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent px-4 pb-3 pt-10">
-          <span className="micro block text-white/60">{scene.label}</span>
           <GlitchTitle
             as="span"
             text={scene.title}
-            className="mt-1.5 block text-[clamp(1.1rem,1.6vw,1.5rem)]"
+            className="block text-[clamp(1.1rem,1.6vw,1.5rem)]"
           />
         </span>
         {/* Bars on the tile that is playing; the play mark on hover. */}

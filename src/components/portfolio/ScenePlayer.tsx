@@ -29,7 +29,7 @@ export function ScenePlayer({ scene }: { scene: Scene }) {
   return (
     <DialogContent className="max-w-[min(1100px,calc(100vw-2rem))] gap-0 overflow-hidden rounded-[1.25rem] border-film-line bg-canvas p-0 sm:rounded-[1.25rem]">
       <div className="flex items-baseline gap-3 px-5 py-4 pr-12 text-white">
-        <DialogDescription className="micro text-white/60">{scene.label}</DialogDescription>
+        <DialogDescription className="sr-only">Full scene</DialogDescription>
         <DialogTitle className="reel-title text-xl">{scene.title}</DialogTitle>
       </div>
       <FullScene scene={scene} />
