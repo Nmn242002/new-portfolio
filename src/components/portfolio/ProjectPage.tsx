@@ -367,7 +367,7 @@ function Footer() {
         </div>
       </div>
       <p className="micro mt-12 text-center text-[0.5rem] opacity-60">
-        © Naman Jain · AI Filmmaker · Delhi
+        © Naman Jain · AI Creative Director &amp; Filmmaker · Delhi
       </p>
     </footer>
   );

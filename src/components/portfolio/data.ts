@@ -160,7 +160,7 @@ export const skills = [
 ];
 
 export const about = {
-  hello: "Hi, I’m Naman, an AI filmmaker who’s also the",
+  hello: "Hi, I’m Naman, an AI creative director and filmmaker who’s also the",
   /** Ends the hello line, in red. */
   role: "editor",
   /** The intro, split by craft so the page can drop a small picture after each one. */
@@ -174,7 +174,7 @@ export const about = {
   ],
   outro: "myself.",
   intro:
-    "I’m Naman Jain, an AI filmmaker. I write the script, design the characters, generate the shots, record the dialogue, build the sound and cut the edit myself.",
+    "I’m Naman Jain, an AI creative director and filmmaker. I write the script, design the characters, generate the shots, record the dialogue, build the sound and cut the edit myself.",
   focus:
     "At PhysicsWallah I’m making Project Earth, an original sci-fi series for their OTT app. I design its characters and worlds, write its Hindi and Hinglish dialogue, and edit it in a 2.39:1 frame.",
   now: "Making Project Earth at PhysicsWallah",
@@ -203,10 +203,28 @@ export const contactBackdrop = {
 
 export const experience = [
   {
+    role: "AI Creative Director",
+    company: "Kuku FM",
+    location: "Fellowship",
+    period: "Nov 2026 – Present",
+    points: [
+      "Direct AI-native stories and microdramas for Kuku FM and Kuku TV on Kuku’s in-house AI storytelling stack, turning story skeletons and episode briefs into shot-level direction: framing, blocking, lighting, character placement and cut timing.",
+      "Work with an AI Architect partner who runs generation, iterating on the footage until each episode meets the visual bar and lands a strong opening hook, early escalation and a cliffhanger ending.",
+    ],
+    tags: [
+      "AI Direction",
+      "Microdramas",
+      "Shot-level Direction",
+      "Short-form Episodic Pacing",
+      "Virtual Cinematography",
+      "AI Video Generation",
+    ],
+  },
+  {
     role: "AI Creator, AI Content R&D Apprentice",
     company: "PW (PhysicsWallah)",
     location: "Noida",
-    period: "May 2026 – Present",
+    period: "May 2026 – Nov 2026",
     points: [
       "Building the AI production workflow for an original multi-episode sci-fi OTT series (Solivus / Project Earth), from scripts and character design to scene prompts, dialogue, sound and edit.",
       "Set up character and location reference sheets, a locked-camera, hard-cut look at 2.39:1 and continuity rules used across every episode.",
@@ -408,19 +426,18 @@ export const showreel = projects.flatMap((project) =>
 /** Landing-page copy, laid out like a film release page (see DESIGN.md). */
 export const cine = {
   genres: ["AI Film", "Sci-Fi", "3D Animation"],
-  release: "Now making · Project Earth",
   credits: ["Writer", "Director", "Sound", "Editor"],
   above: "AI",
   year: "2026",
   story: {
     label: "Naman Jain · Story",
-    text: "AI filmmaker and editor crafting cinematic sci-fi end to end, from script and character design to AI shots with Seedance, Veo, Kling and Midjourney, ElevenLabs dialogue and a Premiere Pro cut.",
+    text: "AI creative director, filmmaker and editor crafting cinematic sci-fi end to end, from script and character design to AI shots with Seedance, Veo, Kling and Midjourney, ElevenLabs dialogue and a Premiere Pro cut.",
   },
   finale: {
     label: "Available for projects",
     hello: "Hi, I’m",
     name: "Naman.",
-    roles: ["AI Filmmaker", "Writer", "Director", "Editor"],
+    roles: ["AI Creative Director", "AI Filmmaker", "Writer", "Director", "Editor"],
     text: "I turn ideas into cinematic stories with AI, from script and characters to the final cut. Let’s make something worth watching.",
     place: "Delhi",
   },
@@ -431,7 +448,7 @@ export const cine = {
       kicker: "Directed by",
       title: "Naman Jain",
       ring: "Directed by Naman Jain ✦ ",
-      text: "An AI filmmaker in Delhi.",
+      text: "An AI creative director and filmmaker in Delhi.",
     },
     {
       kicker: "Every role",
@@ -448,7 +465,7 @@ export const cine = {
     {
       kicker: "Based in",
       title: "Delhi · 2026",
-      ring: "AI Filmmaker • Delhi • 2026 • ",
+      ring: "AI Creative Director • AI Filmmaker • Delhi • 2026 • ",
       text: "Available for projects.",
     },
   ],

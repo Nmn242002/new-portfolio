@@ -116,7 +116,7 @@ function Room({ card, cardY }: { card: MotionValue<number>; cardY: MotionValue<n
       >
         <Logo className="text-lg md:text-xl" />
         <p className="micro text-[0.5rem] text-mute-dark md:text-[0.55rem]">
-          © {new Date().getFullYear()} Naman Jain · AI Filmmaker · {cine.finale.place}, India
+          © {new Date().getFullYear()} Naman Jain · AI Creative Director &amp; Filmmaker · {cine.finale.place}, India
         </p>
       </motion.div>
     </div>

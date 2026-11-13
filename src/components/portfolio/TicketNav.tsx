@@ -222,7 +222,7 @@ function MenuPanel({ onClose }: { onClose: () => void }) {
           ))}
       </ul>
       <p className="micro border-t border-dotted border-paper-line px-4 py-2 text-[0.45rem] opacity-60">
-        © {new Date().getFullYear()} Naman Jain · AI Filmmaker
+        © {new Date().getFullYear()} Naman Jain · AI Creative Director &amp; Filmmaker
       </p>
     </motion.div>
   );

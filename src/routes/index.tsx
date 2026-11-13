@@ -8,9 +8,9 @@ import { SiteHeader } from "@/components/portfolio/cine/SiteHeader";
 import { Projects } from "@/components/portfolio/cine/Projects";
 import { FilmCursor } from "@/components/portfolio/film";
 
-const title = "Naman Jain | AI Filmmaker";
+const title = "Naman Jain | AI Creative Director & Filmmaker";
 const description =
-  "AI filmmaker in Delhi. Script, characters, shots, sound and edit for PhysicsWallah’s sci-fi series Project Earth.";
+  "AI creative director and filmmaker in Delhi. Script, characters, shots, sound and edit for PhysicsWallah’s sci-fi series Project Earth.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

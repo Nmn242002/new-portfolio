@@ -11,7 +11,7 @@ export const Route = createFileRoute("/work/$slug")({
   },
   head: ({ loaderData }) => {
     const project = projects.find((p) => p.slug === loaderData?.slug);
-    const title = project ? `${project.short} | Naman Jain` : "Naman Jain | AI Filmmaker";
+    const title = project ? `${project.short} | Naman Jain` : "Naman Jain | AI Creative Director & Filmmaker";
     const description = project?.points[0] ?? "";
     return {
       meta: [

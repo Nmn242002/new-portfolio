@@ -74,7 +74,7 @@ export function PillLink({
 /** Spinning circular sticker: red disc, ringed text, initials in the middle. */
 export function Sticker({
   className,
-  text = "AI Filmmaker • Naman Jain • ",
+  text = "AI Creative Director • AI Filmmaker • ",
 }: {
   className?: string;
   text?: string;

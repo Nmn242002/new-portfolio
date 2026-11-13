@@ -25,7 +25,7 @@ export function CineHero() {
       ref={stage}
       id="top"
       data-header="dark"
-      aria-label="Naman Jain, AI filmmaker"
+      aria-label="Naman Jain, AI filmmaker and creative director"
       // Rounded, red-edged bottom: a clear break before the record section.
       className="guides relative z-[4] flex min-h-[max(640px,100svh)] flex-col overflow-hidden rounded-b-[1.75rem] border-b-[3px] border-red bg-night px-[clamp(1rem,3.2vw,3rem)] pt-24 text-white [--guide:var(--line-dark)] md:pt-28"
     >
@@ -40,7 +40,6 @@ export function CineHero() {
             </li>
           ))}
         </ul>
-        <p className="micro text-right text-[0.52rem]">{cine.release}</p>
       </div>
 
       <div
@@ -80,17 +79,21 @@ export function CineHero() {
             <span className="md:text-right">Naman</span>
             <span aria-hidden className="hidden md:block" />
             {/* "Jain" hugs the cut-out like "Naman" does; on wide screens a stacked
-                "Film / Maker" fills the rest of the column out to the right guide and
+                "Film / Maker / Creative / Director" fills the rest of the column out to the right guide and
                 finishes the "AI" credit above. */}
             <span className="md:flex md:items-end md:justify-between">
               Jain
               <span
                 aria-hidden
-                className="hidden pb-[0.25em] text-right text-[0.27em] leading-[0.82] text-red md:block"
+                className="hidden pb-[0.25em] text-right text-[0.16em] leading-[0.82] text-red md:block"
               >
                 Film
                 <br />
                 Maker
+                <br />
+                Creative
+                <br />
+                Director
               </span>
             </span>
           </h1>
